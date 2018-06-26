@@ -1,0 +1,30 @@
+{
+  "name": "easy-profile",
+  "version": "0.1.0",
+  "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.43",
+    "apollo-boost": "^0.1.7",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "material-ui": "^1.0.0-beta.43",
+    "react": "^16.3.2",
+    "react-apollo": "^2.1.4",
+    "react-dom": "^16.3.2",
+    "react-fullpage": "^0.1.18",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "simple-icons": "^1.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.1"
+  }
+}

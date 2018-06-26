@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+}
+
+.profile-links svg {
+  font-size: 52px;
+  cursor: pointer;
+}
+
+.Navigation-Anchor {
+  background-color: #000 !important;
+}
+
+.SectionTwo, .SectionThree {
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+  width: 100vw;
+  text-align: left;
+}
+
+.SectionTwo>div {
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+  width: 75vw;
+  padding: 2vw;
+  text-align: left;
+}
+
+.SectionTwo p {
+  padding-bottom: 2vh;
+  font-size: 1.2rem;
+  text-align: justify;
+}
+.SectionTwo h2 {
+  padding-bottom: 3vh;
+  font-size: 1.8rem
+}
+
+.three{
+  display: grid !important;
+  grid-gap: 2vw;
+  grid-template-columns: auto auto auto;
+  width: 75vw;
+}
+
+header {
+  height: 65px;
+  background-color: #fff;
+  opacity: 0.4;
+  text-align: center;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,6 @@
+{
+  "editor.tabSize": 2,
+  "eslint.options": {
+    "configFile": "/home/aravind/coding/js/easy-profile/.eslintrc.json"
+}
+}
