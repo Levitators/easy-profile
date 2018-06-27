@@ -1,0 +1,15 @@
+{
+  "extends": "standard",
+  "rules": {
+    "no-undef": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ]
+  }
+}
