@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": "standard",
   "rules": {
     "no-undef": "off",
     "react/jsx-filename-extension": [

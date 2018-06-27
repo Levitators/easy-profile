@@ -1,6 +1,6 @@
 {
   "name": "easy-profile",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.43",
     "apollo-boost": "^0.1.7",
@@ -22,7 +22,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-standard": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.1"
