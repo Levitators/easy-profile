@@ -83,7 +83,7 @@ class Login extends Component {
         backgroundColor: '#eaeaff'
       }}>
         <div id="g-signin2" s
-          tyle={{ marginBottom: '2%' }}
+          style={{ marginBottom: '2%' }}
           dataOnSuccess={this._googleSigninHandler}
         />
         <div class="fb-login-button"
