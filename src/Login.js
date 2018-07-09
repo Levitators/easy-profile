@@ -82,7 +82,7 @@ class Login extends Component {
         justifyContent: 'center',
         backgroundColor: '#eaeaff'
       }}>
-        <div id="g-signin2" s
+        <div id="g-signin2"
           style={{ marginBottom: '2%' }}
           dataOnSuccess={this._googleSigninHandler}
         />
