@@ -5,5 +5,3 @@ To build the app
 To start the server
 
 `yarn serve`
-
-
