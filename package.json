@@ -7,19 +7,27 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
-    "serve": "nodemon dist/index.js"
+    "serve": "nodemon dist/server.js"
   },
   "dependencies": {
     "@types/dotenv": "^6.1.1",
     "@types/helmet": "^0.0.43",
+    "@types/mongoose": "^5.5.1",
+    "@types/passport-github": "^1.1.5",
+    "@types/react": "^16.8.18",
+    "@types/react-dom": "^16.8.4",
     "body-parser": "^1.19.0",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "express-validator": "^5.3.1",
     "helmet": "^3.18.0",
+    "mongoose": "^5.5.9",
     "passport": "^0.4.0",
-    "passport-facebook": "^3.0.0"
+    "passport-facebook": "^3.0.0",
+    "passport-github": "^1.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
@@ -31,9 +39,14 @@
     "@types/passport-facebook": "^2.1.9",
     "jest": "^24.8.0",
     "nodemon": "^1.19.0",
+    "source-map-loader": "^0.2.4",
     "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.1",
     "ts-node": "^8.1.0",
     "tslint": "^5.16.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "webpack": "^4.32.1",
+    "webpack-cli": "^3.3.2",
+    "webpack-node-externals": "^1.7.2"
   }
 }
