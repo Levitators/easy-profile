@@ -1,80 +1,54 @@
 import express from "express";
+import session from "express-session";
+import path from "path";
 import helmet from "helmet";
 import mongoose from "mongoose";
 import expressValidator from "express-validator";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import passport from "passport";
-import { Strategy as GitHubStrategy } from "passport-github";
-
-import React from "react";
-import { renderToString } from "react-dom/server";
-import html from "./client/Html";
-import App from "./client/App";
+import initializePassport from "./passportStrategy";
+import uuid from "uuid/v4";
+import initiateGraphQL from "./graphql";
+import initializeRoutes from "./routes";
 
 dotenv.config({ path: ".env" });
 
 const app = express();
-const port = process.env.PORT || 3000;
-app.set("port", port);
+
+// Connect to mongo db
 (async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URL);
+    mongoose.set("useCreateIndex", true);
+    await mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
   } catch (e) {
     throw (e);
   }
 })();
+
 app.use(helmet());
 app.use(expressValidator());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(session({
+  genid: () => {
+    return uuid(); // use UUIDs for session IDs
+  },
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true
+}));
 
-app.get("/success", (req, res) => res.send("You have successfully logged in"));
-app.get("/error", (req, res) => res.send("error logging in"));
+initializePassport(app);
+initializeRoutes(app);
+initiateGraphQL(app);
 
-passport.serializeUser(function (user, cb) {
-  cb(undefined, user);
+app.use("/", express.static("dist"));
+
+// Handles any requests that don't match the ones above
+app.get("*", (req: express.Request, res: express.Response) => {
+  res.sendFile(path.join(__dirname + "/dist/index.html"));
 });
 
-passport.deserializeUser(function (obj, cb) {
-  cb(undefined, obj);
-});
-
-app.use(express.static("dist"));
-
-app.get("/", (req, res) => {
-  const body = renderToString(React.createElement(App));
-
-  res.send(
-    html({
-      body
-    })
-  );
-});
-
-
-// app.get("/", (req, res) => res.send("Hello World!"));
-
-passport.use(new GitHubStrategy({
-  clientID: process.env.GITHUB_CLIENT_ID,
-  clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: process.env.GITHUB_CALLBACK_URL
-},
-  (accessToken, refreshToken, profile, cb) => {
-    console.log("Profile -> ", profile);
-    return cb(undefined, profile);
-  }
-));
-
-app.get("/auth/github",
-  passport.authenticate("github"));
-
-app.get("/auth/github/callback",
-  passport.authenticate("github", { failureRedirect: "/error" }),
-  function (req, res) {
-    res.redirect("/success");
-  });
+app.set("port", process.env.PORT || 3000);
 
 export default app;
