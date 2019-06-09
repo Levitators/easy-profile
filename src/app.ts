@@ -46,7 +46,7 @@ app.use("/", express.static("dist"));
 
 // Handles any requests that don't match the ones above
 app.get("*", (req: express.Request, res: express.Response) => {
-  res.sendFile(path.join(__dirname + "/dist/index.html"));
+  res.sendFile("index.html", { root: "dist" });
 });
 
 app.set("port", process.env.PORT || 3000);

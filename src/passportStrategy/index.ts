@@ -10,12 +10,12 @@ export default (app: express.Application) => {
 
   useGithubStrategy(passport, app);
 
-  passport.serializeUser(function (user: IUserData, done) {
+  passport.serializeUser((user: IUserData, done) => {
     done(undefined, user._id);
   });
 
-  passport.deserializeUser(function (id, done) {
-    userData.findById(id, function (err, user) {
+  passport.deserializeUser((id, done) => {
+    userData.findById(id, (err, user) => {
       if (!err) done(undefined, user);
       else done(err, undefined);
     });

@@ -10,12 +10,13 @@ const verifyFunction = async (accessToken: String, refreshToken: String, profile
     if (user) {
       return done(undefined, user);
     }
-    const createdUser = await userData.create({
+    const createdUser = await userData.create(Object.assign({
       email: profile.emails[0].value,
       firstName: profile.displayName,
-      slug: profile.username,
-      avatarUrl: profile.photos[0].value
-    });
+      slug: profile.username
+    },
+      profile.photos[0].value ? { avatarUrl: profile.photos[0].value } : undefined
+    ));
     return done(undefined, createdUser);
   } catch (e) {
     throw e;
