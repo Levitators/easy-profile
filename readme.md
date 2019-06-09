@@ -1,6 +1,8 @@
-To build the app 
+With the reference of the `.env.example` file create a new file with all the required env variables
 
-`yarn build:watch`
+To bundle the react app
+
+`build:client`
 
 To start the server
 

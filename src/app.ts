@@ -1,19 +1,54 @@
 import express from "express";
+import session from "express-session";
+import path from "path";
 import helmet from "helmet";
+import mongoose from "mongoose";
 import expressValidator from "express-validator";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import initializePassport from "./passportStrategy";
+import uuid from "uuid/v4";
+import initiateGraphQL from "./graphql";
+import initializeRoutes from "./routes";
 
-dotenv.config({ path: ".env.example" });
+dotenv.config({ path: ".env" });
 
 const app = express();
-const port = process.env.PORT || 3000;
-app.set("port", port);
+
+// Connect to mongo db
+(async () => {
+  try {
+    mongoose.set("useCreateIndex", true);
+    await mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
+  } catch (e) {
+    throw (e);
+  }
+})();
+
 app.use(helmet());
 app.use(expressValidator());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+  genid: () => {
+    return uuid(); // use UUIDs for session IDs
+  },
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true
+}));
 
-app.get("/", (req, res) => res.send("Hello World!"));
+initializePassport(app);
+initializeRoutes(app);
+initiateGraphQL(app);
+
+app.use("/", express.static("dist"));
+
+// Handles any requests that don't match the ones above
+app.get("*", (req: express.Request, res: express.Response) => {
+  res.sendFile("index.html", { root: "dist" });
+});
+
+app.set("port", process.env.PORT || 3000);
 
 export default app;
