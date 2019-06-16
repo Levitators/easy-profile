@@ -1,5 +1,7 @@
-import hello from "./helloResolver";
+import getUserData from "./getUserDataResolver";
+import updateUserData from "./updateUserDataResolver";
 
 export default {
-  hello
+  getUserData,
+  updateUserData
 };

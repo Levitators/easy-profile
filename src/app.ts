@@ -19,6 +19,7 @@ const app = express();
 (async () => {
   try {
     mongoose.set("useCreateIndex", true);
+    mongoose.set("useFindAndModify", false);
     await mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
   } catch (e) {
     throw (e);
