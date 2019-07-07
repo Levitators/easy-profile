@@ -10,6 +10,9 @@ export default (app: express.Application) => {
       schema: schema,
       rootValue: root,
       context: { userData, request },
+      customFormatErrorFn: (err: any) => {
+        return ({ message: err.message });
+      },
       graphiql: true,
     })
   ));
