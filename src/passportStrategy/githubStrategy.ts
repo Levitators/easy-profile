@@ -37,6 +37,6 @@ export default (passport: PassportStatic, app: express.Application) => {
   app.get("/auth/github/callback",
     passport.authenticate("github", { failureRedirect: "/error" }),
     (req: express.Request, res: express.Response) => {
-      res.redirect("/test");
+      res.redirect(`/${req.user.slug}`);
     });
 };
